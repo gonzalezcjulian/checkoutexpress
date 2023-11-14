@@ -1,0 +1,64 @@
+<header id="navbar_client">
+    <nav>
+        <div class="upper-bar">
+            <a href="/client/home" class="title">
+                <b>Checkout</b>Express
+            </a>
+            <div>
+                <% if (user && user.idUser) { %>
+                    <a href="/client/cart" class="btn" id="cart_icon">
+                        <i class="fa-solid fa-cart-shopping"></i> <%- (cartCount > 0)? cartCount : "" %>
+                    </a>
+                    <a href="/client/wishlist" class="btn">
+                        <i class="fa-regular fa-heart"></i> 
+                    </a>
+                    <div class="dropdown d-inline-block">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <%- user.usuario %> <i class="fa-solid fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a href="/client/mi_cuenta" class="dropdown-item btn">
+                                    Mi cuenta
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/client/logout" class="dropdown-item btn text-danger">
+                                    Cerrar sesion
+                                </a>
+                            </li>
+                        </ul>
+                      </div>
+                    
+                <% }else{ %>
+                    <a href="/client/login" class="btn">
+                        <i class="fa-solid fa-user"></i> Ingresar
+                    </a>
+                <% } %>
+                
+            </div>
+        </div>
+        <div class="middle-bar row">
+            <div class="col-md-2">
+                <button class="btn location">
+                    <i class="fa-solid fa-location-dot"></i> Castelar, 1712
+                </button>
+            </div>
+            <div class="col-md-4">
+                <a class="btn scan" href="/client/scan">
+                    Escaneá tu producto!
+                </a>
+            </div>
+            <div class="col-md-6 position-relative">
+                <input type="text" class="form-control w-75 ms-auto" placeholder="Buscar...">
+                <i class="fa-solid fa-magnifying-glass search"></i>
+            </div>
+        </div>
+        <div class="lower-bar">
+            <a href="/client/destacados" class="link disabled">Destacados</a>
+            <% categorias_lista.forEach(cat => { %>
+                <a href="/client/coleccion/<%- cat.id %>" class="link"><%- cat.categoryName %></a>
+            <% }) %>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,64 @@
+<%- include("./partials/head.ejs") %> 
+<body>
+    <section id="admin" class="admin_menu">
+        <div class="row gx-0">
+            <%- include('./partials/admin_sidebar') %>
+            <div class="col-9" id="contenido">
+
+                <p class="title"><b>Checkout</b>Express </p>
+                <div class="row gx-5 px-3">
+                    <div class="col-md-3">
+                        <button class="btn w-100 btn-primary">
+                            Ventas Totales hoy:<br>20 
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn w-100 btn-info">
+                            Productos Activos:<br>1050
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn w-100 btn-warning">
+                            Usuarios Activos:<br>2000
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn w-100 btn-success">
+                            Productos con bajo Stock:<br>10
+                        </button>
+                    </div>
+                    
+                </div>
+                <div class="row" id="charts">
+                    <div class="col-6">
+                        <img src="/assets/img/Line-Graph.png" alt="">
+                    </div>
+                    <div class="col-6">
+                        <img src="/assets/img/donut_chart_thumb_1.png" alt="">
+                    </div>
+                </div>
+                <div class="row justify-content-around gx-5" id="sponsors">
+                    <div class="col-md-2">
+                        <img src="/assets/img/fa-brands-2.png" alt="">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="/assets/img/fa-brands-3.png" alt="">
+
+                    </div>
+                    <div class="col-md-2">
+                        <img src="/assets/img/fa-brands-4.png" alt="">
+
+                    </div>
+                    <div class="col-md-2">
+                        <img src="/assets/img/fa-brands-5.png" alt="">
+
+                    </div>
+                    <div class="col-md-2">
+                        <img src="/assets/img/fa-brands-2.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<%- include("./partials/head.ejs") %> 
+<body id="client" class="client_home">
+    <% if (status == "completado") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-success">Orden completada!</b>',
+                    message: 'Espere al administrador revisa su orden.',
+                });
+            });
+        </script>
+    <% } %>
+    <% if (status == "agregado") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-success">Agregado!</b>',
+                    message: 'Producto agregado al carrito.',
+                });
+            });
+        </script>
+    <% } %>
+    <% if (status == "acumulado") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-success">Agregado!</b>',
+                    message: 'Producto aumento en cantidad en el carrito.',
+                });
+            });
+        </script>
+    <% } %>
+    <% if (status == "error") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-danger">Error!</b>',
+                    message: 'Error inesperado.',
+                });
+            });
+        </script>
+    <% } %>
+    <% if (status == "vacio") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-danger">Carrito vacio!</b>',
+                    message: 'Sume productos al carrito.',
+                });
+            });
+        </script>
+    <% } %>
+    <%- include("./partials/client_header.ejs") %> 
+    <form action="/client/add_to_cart" method="post" id="form_add_to_cart">
+        <input type="hidden" name="back" value="/client/home">
+    </form>
+    <main class="px-5">
+        <div id="carouselHome" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/assets/img/shop-hero-3-product-slide-2.jpg" class="d-block w-100" alt="/assets.">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Bienvenido a Checkout<br> Express</h5>
+                    <p>Escaneá el código de barras de tu producto o selecciona lo que desees desde el sitio.</p>
+                    <a href="/client/scan" class="btn btn-lg">Empezá ahora</a>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/img/shop-hero-3-product-slide-2.jpg" class="d-block w-100" alt="/assets.">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Bienvenido a Checkout<br> Express</h5>
+                    <p>Escaneá el código de barras de tu producto o selecciona lo que desees desde el sitio.</p>
+                    <a href="/client/scan" class="btn btn-lg">Empezá ahora</a>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/img/shop-hero-3-product-slide-2.jpg" class="d-block w-100" alt="/assets.">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Bienvenido a Checkout<br> Express</h5>
+                    <p>Escaneá el código de barras de tu producto o selecciona lo que desees desde el sitio.</p>
+                    <button class="btn btn-lg">Empezá ahora</button>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div class="row mas-vendidos justify-content-around">
+            <div class="col-3">
+                <p class="mensaje">
+                    Elegimos algunas <span class="texto-naranja">cosas geniales</span> para vos!
+                </p>
+            </div>
+            <div class="col-7">
+                <div class="row justify-content-around">
+                    <% productos_lista.forEach(prod => { %>
+                        <div class="col-3 card-producto">
+                            <img style="width: 75%;object-fit:cover" class="d-block mx-auto" src="/assets/imagen_productos/<%- prod.image %>" onerror="if (this.src != '/assets/img/default_product.png') this.src = '/assets/img/default_product.png';" alt="">
+                            <p>
+                                <%- prod.productName%>
+                            </p>
+                            <div class="row">
+                                <div class="col-8 text-start">$<%- prod.price%></div>
+                                <div class="col-4 text-danger text-end">-40% off</div>
+                            </div>
+                            <button class="btn-naranja btn mx-auto d-block mt-3 w-75" name="idProduct" form="form_add_to_cart" value="<%- prod.id %>">Agregar</button>
+                        </div>
+                    <% }) %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <a href="/client/scan"><img src="/assets/img/scanning.png" class="w-100 my-5" alt=""></a>
+
+        <!-- CLIENTES -->
+
+        <img src="/assets/img/desktop-clients-1.png" class="w-100 my-4" alt="">
+        <p class="title-productos mt-5">
+            Ofertas del día!
+        </p>
+        <div class="row justify-content-around">
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+        </div>
+
+        <p class="title-productos mt-5">
+            Tus productos buscados
+        </p>
+        <div class="row justify-content-around">
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+        </div>
+
+        <p class="title-productos mt-5">
+            Promociones en Muebles
+        </p>
+        <div class="row justify-content-around">
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

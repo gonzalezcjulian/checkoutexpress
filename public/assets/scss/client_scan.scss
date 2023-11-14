@@ -1,0 +1,24 @@
+.client_scan{
+    .barCode-container{
+        width: 80%;
+        margin: auto;
+        background-color: rgb(179, 179, 179);
+        padding: 2rem 4rem;
+    }
+    #form-scan{
+        width: 80%;
+        margin: 3rem auto;
+        .form-control{
+            width: 40%;
+            display: block;
+            margin: auto;
+        }
+        button{
+            margin-top: 1rem;
+            color: white;
+            background-color: rgb(255, 208, 0);
+            padding: 0.2rem 4rem;
+            font-weight: bold;
+        }
+    }
+}

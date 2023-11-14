@@ -1,0 +1,28 @@
+.admin_usuarios{
+    #contenido{
+        padding-left: 1rem;
+        padding-right: 1rem;
+        min-height: 100vh;
+        #search_bar{
+            .search{
+                background-color: rgb(221, 221, 221);
+                color: #000;
+                border:1px rgb(156, 156, 156) solid;
+                padding-left:1rem ;
+                padding-right: 1rem;
+            }
+        }
+        table{
+            font-size: 1.15rem;
+            width: 90%;
+            margin: 3rem auto;
+            th{
+                text-align: center;
+            }
+            td{
+                text-align: center;
+                padding-bottom: 0.65rem;
+            }
+        }
+    }
+}

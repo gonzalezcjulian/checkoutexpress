@@ -1,0 +1,231 @@
+<%- include("./partials/head.ejs") %> 
+
+<% if (status == "success") { %>
+  <script>
+      $(document).ready(function () {
+          bootbox.alert({
+              title: '<b class="text-success">Agregado!</b>',
+              message: 'El usuario fue dado de alta correctamente.',
+          });
+      });
+  </script>
+<% } %>
+<% if (status == "error") { %>
+  <script>
+      $(document).ready(function () {
+          bootbox.alert({
+              title: '<b class="text-danger">Error!</b>',
+              message: 'Error inesperado contacte al administrador.',
+          });
+      });
+  </script>
+<% } %>
+
+<% if (status != "undefined" && status == "email_repetido") { %>
+  <!-- Modal -->
+ <div class="modal fade" id="alerta_success" tabindex="-1" aria-labelledby="alerta_success" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title text-danger" id="alerta_success">Error en Email</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+        El email ingresado ya existe en la base de datos.
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+ <script type="text/javascript">
+   window.addEventListener('load', function() {
+     var myModal = new bootstrap.Modal(document.getElementById('alerta_success'))
+     myModal.show();
+   });
+ </script>
+ <% } %>
+<script>
+	$.validator.setDefaults({
+		submitHandler: function() {
+			form.submit()
+		}
+	});
+
+	$().ready(function() {
+
+		// validate signup form on keyup and submit
+		$("#form-usuarios").validate({
+			rules: {
+				fullName: {
+					required: true,
+					minlength: 4,
+				},
+				email: {
+					required: true,
+          email:true,
+				},
+				username: {
+					required: true,
+					minlength: 4,
+				},
+        password: {
+					required: true,
+					minlength: 6,
+
+				},
+        password2: {
+					required: true,
+					minlength: 6,
+          equalTo: "#password"
+				}
+			},
+			messages: {
+				fullName: {
+					required: "Ingrese un nombre completo",
+					minlength: "Nombre completo debe tener al menos 4 caracteres o mas",
+				},
+				email: {
+					required: "Ingrese un email",
+          email:"el email debe ser valido",
+				},
+				username: {
+					required: "Ingrese un usuario",
+					minlength: "El usuario debe tener minimo 4 caracteres",
+				},
+        password: {
+					required: "Ingrese la contraseña",
+					minlength: "La contraseña debe tener minimo 6 caracteres",
+
+				},
+        password2: {
+					required: "Repita la contraseña",
+					minlength: "La contraseña debe tener minimo 6 caracteres",
+          equalTo: "Las contraseñas no son iguales"
+				}
+			}
+		});
+	});
+</script>
+<body>
+    <section id="admin" class="admin_usuarios">
+        <div class="row gx-0">
+            <%- include('./partials/admin_sidebar') %>
+            <div class="col-9" id="contenido">
+                <p class="title"><b>Checkout</b>Express </p>
+                <p class="subtitle">Gestión de usuarios</p>
+                <div class="row justify-content-center align-items-center" id="search_bar">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary px-4"
+                        onClick="document.querySelector('.expandible-sidebar-form').classList.add('activo');"><i class="fa-solid fa-plus"></i> Nuevo</button>
+                    </div>
+                    <div class="col-md-7 d-flex ">
+                        <input type="text" class="form-control form-control-lg" placeholder="Buscar...">
+                        <button class="search btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Email</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">gonzalezcjulian@gmail.com</th>
+                        <td>Julian Gonzalez</td>
+                        <td>Activo</td>
+                        <td>
+                            <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">juan.perez@yahoo.com.ar</th>
+                        <td>Juan Perez</td>
+                        <td>Bloqueado</td>
+                        <td>
+                            <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">alumno@uai.edu.ar</th>
+                        <td>Alumno UAI</td>
+                        <td>Activo</td>
+                        <td>
+                            <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">alumno@uai.edu.ar</th>
+                        <td>Alumno UAI</td>
+                        <td>Activo</td>
+                        <td>
+                            <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <div class="expandible-sidebar-form">
+          <form action="/admin/usuarios" method="post" id="form-usuarios" enctype="multipart/form-data">
+
+            <h3>Nuevo Usuario</h3>
+            <hr>
+            <div class="row justify-content-between">
+              <div class="col-md-5">
+                <label for="imagen">Imagen</label>
+                <input type="file" name="imagen" id="imagen" class="form-control">
+              </div>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <label for="fullName">Nombre y Apellido</label>
+                  <input type="text" name="fullName" id="fullName" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" autocomplete="new-email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="username">Usuario</label>
+              <input type="text" name="username" id="username" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input type="password" name="password" id="password" autocomplete="new-password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="password2">Repetir Contraseña</label>
+              <input type="password" name="password2" id="password2" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="rol">Rol</label>
+              <select name="rol" id="rol" class="form-control">
+                <option >Seleccionar categoria</option>
+                <option value="administrador">Administrador</option>
+                <option value="cliente">Cliente</option>
+
+              </select>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="button" onClick="document.querySelector('.expandible-sidebar-form').classList.remove('activo');" class="btn btn-danger">Cerrar</button>
+            </div>
+            
+          </form>
+        </div>
+    </section>
+</body>
+</html>

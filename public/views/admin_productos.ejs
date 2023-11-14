@@ -1,0 +1,192 @@
+<%- include("./partials/head.ejs") %> 
+
+<% if (status == "success") { %>
+  <script>
+      $(document).ready(function () {
+          bootbox.alert({
+              title: '<b class="text-success">Agregado!</b>',
+              message: 'El producto fue dado de alta correctamente.',
+          });
+      });
+  </script>
+<% } %>
+<% if (status == "error") { %>
+  <script>
+      $(document).ready(function () {
+          bootbox.alert({
+              title: '<b class="text-danger">Error!</b>',
+              message: 'Error inesperado contacte al administrador.',
+          });
+      });
+  </script>
+<% } %>
+
+
+
+<script>
+	$.validator.setDefaults({
+		submitHandler: function() {
+			form.submit();
+		}
+	});
+
+	$().ready(function() {
+		// validate signup form on keyup and submit
+		$("#form-productos").validate({
+			rules: {
+				stock: {
+					required: true,
+					digits:true
+				},
+				productName: {
+					required: true,
+					minlength: 2
+				},
+				barCode: {
+					required: true,
+          digits:true,
+					minlength: 5,
+				},
+        category: {
+					required: true,
+				},
+        price: {
+					required: true,
+					digits: true
+				}
+			},
+			messages: {
+				stock: {
+					required: "Ingrese un stock",
+					digits: "Debe ingresar un numero"
+				},
+				productName: {
+					required: "Ingrese un nombre de producto",
+					minlength: "Nombre de producto debe ser mayor a 2 caracteres"
+				},
+        barCode: {
+					required: "Ingrese un codigo de barra",
+					digits: "Codigo de barra debe ser un numero",
+					minlength: "Codigo de barra debe ser mayor a 5 caracteres"
+				},
+        category: {
+					required: "Ingrese la categoria del producto",
+				},
+        price: {
+					required: "Ingrese el precio del producto",
+					digits: "Precio debe ser un numero",
+				},
+			}
+		});
+	});
+</script>
+<body>
+    <section id="admin" class="admin_usuarios">
+        <div class="row gx-0">
+            <%- include('./partials/admin_sidebar') %>
+            <div class="col-9" id="contenido">
+                <p class="title"><b>Checkout</b>Express </p>
+                <p class="subtitle">Inventario | Gestión de Productos</p>
+                <div class="row justify-content-center align-items-center" id="search_bar">
+                  <div class="col-md-2">
+                    <button class="btn btn-primary px-4"
+                     onClick="document.querySelector('.expandible-sidebar-form').classList.add('activo');"><i class="fa-solid fa-plus"></i> Nuevo</button>
+                  </div>
+                    <div class="col-md-7 d-flex ">
+                        <input type="text" class="form-control form-control-lg" placeholder="Buscar...">
+                        <button class="search btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col" class="text-end pe-4">Stock</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% array_productos.forEach(p => { %>
+                        <tr>
+                          <th scope="row"><%- p.id %></th>
+                          <td><%- p.productName %></td>
+                          <td><%- p.categoria.dataValues.categoryName %></td>
+                          <% if (p.stock < 5) { %>
+                            <td class="text-end pe-4"> <span class="text-danger">Bajo Stock</span> <i class="fa-solid fa-triangle-exclamation text-danger"></i> <%- p.stock %></td>
+                          <% }else{ %>
+                            <td class="text-end pe-4"><%- p.stock %></td>
+                          <% } %>
+                          <td>
+                            <% if (p.status == "activo") { %>
+                             <span class="text-success">Activo</span>
+                            <% }else if(p.status == "inactivo"){ %>
+                             <span class="text-danger">Inactivo</span>
+                            <% } %>
+                          </td>
+                          <td>
+                              <a class="btn btn-success" href="/admin/productos?editar=<%- p.id %>"><i class="fa-solid fa-pen"></i>Editar</a>
+                              <a class="btn btn-danger" href="/admin/productos?borrar=<%- p.id %>"><i class="fa-solid fa-trash-can"></i>Borrar</a>
+                          </td>
+                        </tr>
+                      <% }) %>
+                      
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <div class="expandible-sidebar-form">
+          <form action="/admin/productos" method="post" id="form-productos" enctype="multipart/form-data">
+            <h3>Nuevo Producto</h3>
+            <hr>
+            <div class="row justify-content-between">
+              <div class="col-md-5">
+                <label for="imagen">Imagen</label>
+                <input type="file" name="imagen" id="imagen" class="form-control">
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="stock">Stock</label>
+                  <input type="number" name="stock" id="stock" class="form-control">
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="productName">Nombre de producto</label>
+              <input type="text" name="productName" id="productName" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="description">Descripcion</label>
+              <textarea name="description" id="description" class="form-control" rows="7"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="barCode">Codigo de barra</label>
+              <input type="text" name="barCode" id="barCode" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="category">Categoria</label>
+              <select type="text" name="category" id="category" class="form-control">
+                <option >Seleccionar categoria</option>
+                <% array_categorias.forEach(cat => { %>
+                  <option value="<%- cat.id %>"><%- cat.categoryName %></option>
+                <% }) %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="price">Precio</label>
+            <input type="number" name="price" id="price" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="button" onClick="document.querySelector('.expandible-sidebar-form').classList.remove('activo');" class="btn btn-danger">Cerrar</button>
+            </div>
+            
+          </form>
+        </div>
+    </section>
+</body>
+</html>

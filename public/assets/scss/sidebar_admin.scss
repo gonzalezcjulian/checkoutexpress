@@ -1,0 +1,25 @@
+#admin{
+    #sidebar{
+        min-height: 100vh;
+        background-color: rgb(57, 57, 57);
+        padding-left: 2rem;
+        padding-top: 2rem;
+        position: relative;
+        h5{
+            color: white;
+            margin-bottom: 1.2rem;
+        }
+        .cerrar_sesion{
+            position: absolute;
+            bottom:2rem;
+            left:2rem;
+        }
+        a{
+            display: block;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            margin-bottom: 0.75rem;
+        }
+    }
+}

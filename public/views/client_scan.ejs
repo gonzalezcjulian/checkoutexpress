@@ -1,0 +1,220 @@
+<%- include("./partials/head.ejs") %> 
+
+<% if (status == "agregado") { %>
+    <script>
+        $(document).ready(function () {
+            bootbox.alert({
+                title: '<b class="text-success">Agregado!</b>',
+                message: 'Producto agregado al carrito.',
+            });
+        });
+    </script>
+<% } %>
+<body id="client" class="client_scan">
+    <%- include("./partials/client_header.ejs") %> 
+    <main class="px-5">
+        <p class="title-productos mt-5">
+            <b>Productos</b> | Escaneo de productos
+        </p>
+        <div class="barCode-container">
+            <img src="/assets/img/barcode-1 1.png" class="w-50 d-block mx-auto" alt="">
+        </div>
+        <form action="/client/scan" method="post" id="form-scan">
+            <input type="text" class="form-control" name="barCode" placeholder="Ingresá manualmente el código de barras..">
+            <button class="btn d-block mx-auto">Agregar</button>
+        </form>
+
+
+        <!-- CLIENTES -->
+        <p class="title-productos mt-5">
+            Ofertas del día!
+        </p>
+        <div class="row justify-content-around">
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/ofertas1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+        </div>
+
+        <p class="title-productos mt-5">
+            Tus productos buscados
+        </p>
+        <div class="row justify-content-around">
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/buscados1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+        </div>
+
+        <p class="title-productos mt-5">
+            Promociones en Muebles
+        </p>
+        <div class="row justify-content-around">
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+            <div class="col-2 card-producto">
+                <img src="/assets/img/muebles1.png" alt="">
+                <p>
+                    Inalsa Freidora Fry-Light-1400W
+                </p>
+                <div class="row">
+                    <div class="col-8 text-start">$999,99</div>
+                    <div class="col-4 text-danger text-end">-40% off</div>
+                </div>
+                <button class="btn-naranja btn mx-auto d-block mt-3 w-75">Agregar</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+.admin_menu{
+    #contenido{
+        min-height: 100vh;
+        #charts{
+            img{
+                width: 80%;
+                object-fit: cover;
+                display: block;
+                margin: auto;
+            }
+        }
+        #sponsors{
+            img{
+                width: 50%;
+                object-fit: cover;
+                display: block;
+                margin: auto;
+            }
+        }
+        .title{
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            margin-top: 3rem;
+        }
+
+    }
+}

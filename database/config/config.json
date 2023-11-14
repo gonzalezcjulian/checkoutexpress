@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "julian_app",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "julian_app",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  
+  "production": {
+    "username": "327691",
+    "password": "Qubik0322!",
+    "database": "checkoutexpress-db_final",
+    "host": "mysql-checkoutexpress-db.alwaysdata.net",
+    "dialect": "mysql"
+  }
+}

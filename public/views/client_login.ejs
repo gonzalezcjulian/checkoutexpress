@@ -1,0 +1,39 @@
+<%- include("./partials/head_login.ejs") %> 
+<body>
+    <% if (status == "error") { %>
+        <script>
+            $(document).ready(function () {
+                bootbox.alert({
+                    title: '<b class="text-success">Error de login!</b>',
+                    message: 'Vuelva a ingresar los datos de login.',
+                });
+            });
+        </script>
+    <% } %>
+    <% for( let index = 0; index < 10; index++ ) { %>
+        <% index %>
+    <% } %>
+    <section  id="admin_login">
+        <div class="row gx-0">
+            <div class="col-6">
+                <img src="/assets/img/client_login.jpg" style="object-position: center;" alt="">
+            </div>
+            <div class="col-6">
+                <form action="/client/login" method="post">
+                    <p> <b>Checkout</b>Express </p>
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="email">
+                    <input type="password" name="password" class="form-control form-control-lg" placeholder="password">
+                    <div>
+                        <input type="checkbox">
+                        <label for="">Recordar email</label>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+                </form>
+                <hr>
+                <a href="" class="link my-3">¿Olvidaste tu contraseña?</a>
+                <a href="" class="link">Registrate</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

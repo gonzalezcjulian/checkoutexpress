@@ -1,0 +1,77 @@
+<%- include("./partials/head.ejs") %> 
+<body>
+    <section id="admin" class="admin_usuarios">
+        <div class="row gx-0">
+            <%- include('./partials/admin_sidebar') %>
+            <div class="col-9" id="contenido">
+                <p class="title"><b>Checkout</b>Express </p>
+                <p class="subtitle">Gestión de pedidos</p>
+                <div class="row align-items-center" id="search_bar">
+                    <div class="col-md-7 d-flex ">
+                        <input type="text" class="form-control form-control-lg" placeholder="Buscar...">
+                        <button class="search btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Pedido</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Fecha creación</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Pago</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">0001</th>
+                        <td>gonzalezcjulian@gmail.com</td>
+                        <td>11/10/2023</td>
+                        <td><i class="fa-solid fa-circle text-success"></i></td>
+                        <td><i class="fa-solid fa-circle-check text-danger"></i></td>
+                        <td>
+                            <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">0001</th>
+                        <td>gonzalezcjulian@gmail.com</td>
+                        <td>11/10/2023</td>
+                        <td><i class="fa-solid fa-circle text-success"></i></td>
+                        <td><i class="fa-solid fa-circle-check text-danger"></i></td>
+                        <td>
+                            <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">0001</th>
+                        <td>gonzalezcjulian@gmail.com</td>
+                        <td>11/10/2023</td>
+                        <td><i class="fa-solid fa-circle text-success"></i></td>
+                        <td><i class="fa-solid fa-circle-check text-danger"></i></td>
+                        <td>
+                            <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">0001</th>
+                        <td>gonzalezcjulian@gmail.com</td>
+                        <td>11/10/2023</td>
+                        <td><i class="fa-solid fa-circle text-success"></i></td>
+                        <td><i class="fa-solid fa-circle-check text-danger"></i></td>
+                        <td>
+                            <button class="btn btn-success"><i class="fa-solid fa-pen"></i>Editar</button>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Borrar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

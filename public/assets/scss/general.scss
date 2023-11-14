@@ -1,0 +1,114 @@
+.texto-naranja{
+    color:#FFAE5D;
+}
+.btn-naranja{
+    background-color:#FFAE5D;
+    color: #fff;
+}
+.error{
+    color:red;
+}
+#admin{
+    min-height: 100vh;
+    #contenido{
+        .title{
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            margin-top: 3rem;
+        }
+        .subtitle{
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    }
+    .expandible-sidebar-form{
+        position: absolute;
+        width: 0px;
+        top: 0px;
+        right: 0px;
+        overflow: hidden;
+        transition: all 0.5s;
+        background-color: white;
+        height: 100vh;
+        padding: 0;
+        border-left: 1px rgb(203, 203, 203) solid;
+        .form-group{
+            margin-bottom: 1.5rem;
+            .form-control{
+                background-color: #f8f8f8;
+            }
+        }
+    }
+    .expandible-sidebar-form.activo{
+        width: 38%;
+        padding: 1rem 3.5rem;
+    }
+}
+#client{
+    padding-left:3rem;
+    padding-right:3rem;
+    main{
+        margin-top: 2rem;
+    }
+    #navbar_client{
+        
+        .upper-bar{
+            .title{
+                font-size: 2rem;
+                text-align: left;
+                text-decoration: none;
+                color: #000;
+            }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px grey solid;
+        }
+        .middle-bar{
+            margin-top: 1rem;
+            .location{
+                background-color: #FFAE5D;
+                width:75%;
+            }
+            .scan{
+                width: 85%;
+                background-color: #FF3232CC;
+            }
+            .search{
+                position: absolute;
+                right:1.5rem;
+                top: 0.65rem;
+            }
+        }
+        .lower-bar{
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            .link{
+                text-decoration: none;
+                color:rgb(81, 81, 81);
+            }
+            .link:hover{
+                color:#FFAE5D;
+            }
+            .link.disabled{
+                pointer-events: none;
+            }
+
+        }
+    }
+    .card-producto{
+        font-size: 1rem;
+        font-size: bold;
+    }
+    .title-productos{
+        font-size: 2rem;
+        font-weight: 500;
+        border-bottom:2px #FFAE5D dashed;
+    }
+}
+.accordion-button{
+    background-color: transparent !important;    
+}

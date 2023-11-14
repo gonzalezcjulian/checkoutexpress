@@ -1,0 +1,1 @@
+sass --watch scss/import.scss:css/style.css

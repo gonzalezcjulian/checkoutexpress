@@ -1,0 +1,344 @@
+<%- include("./partials/head.ejs") %> 
+<body id="client" class="client_cart">
+    <script>
+        $.validator.setDefaults({
+            submitHandler: function() {
+                form.submit()
+            }
+        });
+    
+        $().ready(function() {
+    
+            // validate signup form on keyup and submit
+            $("#form-cart").validate({
+                rules: {
+                    firstName: {
+                        required: true,
+                        minlength: 1,
+                    },
+                    lastName: {
+                        required: true,
+                        minlength: 1,
+                    },
+                    email: {
+                        required: true,
+                        email:true,
+                    },
+                    address: {
+                        required: true,
+                        minlength: 4,
+                    },
+                    estate: {
+                        required: true,
+                    },
+                    codPostal: {
+                        required: true,
+                        digits: true,
+                    },
+                    phone: {
+                        required: true,
+                        digits: true,
+                        minlength: 5,
+                    },
+                    city: {
+                        required: true,
+                        minlength: 2,
+                    },
+                },
+                messages: {
+                    firstName: {
+                        required: "Ingrese un nombre",
+                        minlength: "Nombre debe tener al menos 2 caracteres o mas",
+                    },
+                    lastName: {
+                        required: "Ingrese un Apellido",
+                        minlength: "Apellido debe tener al menos 2 caracteres o mas",
+                    },
+                    email: {
+                        required: "Ingrese un email",
+                        email:"el email debe ser valido",
+                    },
+                    address: {
+                        required: "Ingrese un direccion",
+                        minlength: "La direccion debe tener minimo 4 caracteres",
+                    },
+                    estate: {
+                        required: "Provincia es requerido",    
+                    },
+                    postalCode: {
+                        required: "Codigo postal es requerido",
+                        digits: "Codigo postal debe ser numerico",
+                    },
+                    phone: {
+                        required: "Telefono es requerido",
+                        digits: "Telefono debe ser numerico",
+                        minlength: "Telefono debe tener minimo 5 caracteres",
+                    },
+                    city: {
+                        required: "Ciudad es requerido",
+                        minlength: "Ciudad debe tener minimo 2 caracteres",
+                    },
+                }
+            });
+        });
+    </script>
+    <%- include("./partials/client_header.ejs") %> 
+    <main class="px-0 mt-3">
+        <div class="row" id="cart">
+            <div class="col-7">
+                <form action="/client/cart" method="post" id="form-cart" enctype="multipart/form-data">
+                    <section id="direccionFacturacion">
+                        <h3>Dirección de Facturación</h3>
+                        <div class="row">
+                            <div class="col-6 position-relative mb-4">
+                                <label for="firstName" class="form-label floating-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="emailHelp">
+                            </div>
+                            <div class="col-6 position-relative mb-4">
+                                <label for="lastName" class="form-label floating-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName">
+                            </div>
+                        </div>
+                        <div class="form-group position-relative mb-4">
+                            <label for="email" class="form-label floating-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group position-relative mb-4">
+                            <label for="address" class="form-label floating-label">Dirección</label>
+                            <input type="text" class="form-control" id="address" name="address">
+                        </div>
+                        <div class="row">
+                            <div class="col-6 position-relative mb-4">
+                                <label for="estate" class="form-label floating-label">Provincia</label>
+                                <select name="estate" class="form-control" id="estate" required>
+                                    <option>seleccionar opcion</option>
+                                    <option value="bsas">Buenos Aires</option>
+                                </select>
+                            </div>
+                            <div class="col-6 position-relative mb-4">
+                                <label for="city" class="form-label floating-label">Ciudad</label>
+                                <input type="text" class="form-control" id="city" name="city">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 position-relative mb-4">
+                                <label for="codPostal" class="form-label floating-label">Codigo Postal</label>
+                                <input type="number" class="form-control" id="codPostal" name="codPostal">
+                            </div>
+                            <div class="col-6 position-relative mb-4">
+                                <label for="phone" class="form-label floating-label">Teléfono</label>
+                                <input type="number" class="form-control" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="form-control-checkbox" id="checkbox1">
+                            <label for="checkbox1" class="form-label">Mi dirección es también la dirección de facturación</label>
+                        </div>
+                        <!-- <div class="form-group  mb-3">
+                            <input type="checkbox" class="form-control-checkbox" id="checkbox2">
+                            <label for="checkbox2" class="form-label">Crear una cuenta</label>
+                        </div> -->
+
+                    </section>
+                    <section id="metodoPago">
+                        <h3>Método de Pago</h3>
+                        <div class="mercadopago">
+                            <input type="radio" name="payment_method" id="mercadopago" value="mercadopago" class="form-control-radio" onclick="clickMercadopago()">
+                            <label for="mercadopago">MercadoPago</label>
+                            <p>Serás redireccionado al sitio de MercadoPago</p>
+                            <img src="/assets/img/PayPal.png" class="paypal" alt="">
+                        </div>
+                        <div class="tarjetas">
+                            <input type="radio" name="payment_method" value="tarjetas" id="tarjetas" class="form-control-radio" onclick="clickTarjeta()">
+                            <label for="tarjetas">Tarjeta de Crédito/Débito</label>
+                            <div class="row">
+                                <div class="col-7 position-relative my-4">
+                                    <label for="" class=" floating-label">Número de tarjeta</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col-3 position-relative my-4">
+                                    <label for="" class=" floating-label">Vencimiento</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col-7 position-relative mb-4">
+                                    <label for="" class=" floating-label">Codigo de seguridad</label>
+                                    <input type="number" class="form-control">
+                                </div>
+                                <img src="/assets/img/cards.png" class="cards" alt="">
+                            </div>
+                        </div>
+                        <div class="transferencia activo">
+                            <input type="radio" name="payment_method" checked value="transferencia" id="transferencia" class="form-control-radio" onclick="clickTransferencia()">
+                            <label for="transferencia">Transferencia bancaria</label>
+                            <div class="row bancario">
+                                <p>CBU: <b>5164446011100042993408</b></p>
+                                <p>Alias: <span>venta.electronic.mp</span></p>
+                                <p>Nombre de titular: <span>Julián Gonzáles</span></p>
+                                <p>Numero: <span>1110004299340</span></p>
+                                <p>CUIT: <span>31652461</span></p>
+                                <p>Tipo de cuenta: <span>Cuenta corriente en pesos</span></p>
+                            </div>
+                            <div class="row">
+                                <label for="comprobante" class="fw-bold text-center mb-3">Comprobante</label>
+                                <input type="file" id="comprobante" required name="archivo" class="form-control">
+                            </div>
+                        </div>
+                        <p class="seguridad">
+                            <img src="/assets/img/seguridad-icon.png" class="icon"> <span>Protegemos su información de pago mediante encriptación para brindar seguridad a nivel bancario.</span>
+                        </p>
+                        <div class="form-group">
+                            <input type="checkbox" name="terminos_condiciones" form="form-cart" value="si" required class="form-control-checkbox">
+                            <span>Haga click aquí para aceptar nuestros <a href="#">Términos y Condiciones</a></span>
+                        </div>
+                    </section>
+                </form>
+            </div>
+            <div class="col-5" id="sidebar-cart">
+                <section id="resumenCompra">
+                    <div class="accordion" id="resumenCompra-accordion">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <p>Resumen de compra <br> <span>3 productos agregados</span></p>
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#resumenCompra-accordion">
+                            <div class="accordion-body">
+                            <!-- productos en carrito -->
+                            <% carrito_lista.forEach(cart => { %>
+                                <div class="row">
+                                    <div class="col-md-3 mb-2">
+                                        <img src="/assets/img/cart-default.png" class="w-75" alt="">
+                                    </div>
+                                    <div class="col-md-9 mb-2">
+                                        <div class="d-flex justify-content-between">
+                                            <p>
+                                                <%- cart.producto.dataValues.productName %><br>
+                                                <span><b>Codigo de barra:</b> <%- cart.producto.dataValues.barCode %></span>
+                                            </p>
+                                            <button class="btn">
+                                                <i class="fa-solid fa-xmark fa-lg"></i>
+                                            </button>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <button class="btn btn-minus-quantity">
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </button>
+                                                <input type="number" value="<%- cart.quantity %>" class="form-control quantity">
+                                                <button class="btn btn-plus-quantity">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <% if (cart.producto.dataValues.discount) { %>
+                                                    <p class="original-price">$<%- cart.producto.dataValues.price %></p>
+                                                    <p class="discount-price">$<%- cart.producto.dataValues.discount %></p>
+                                                <% }else{%>
+                                                    <p class="original-price">$<%- cart.producto.dataValues.price %></p>
+                                                <% } %>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                            
+                            <!-- fin de productos en carrito -->
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    
+                </section>
+                <section id="descuentos">
+                    <div class="accordion" id="descuentos-accordion">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                <p>Codigo de descuento</p>
+                            </button>
+                          </h2>
+                          <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#descuentosAccordion">
+                            <div class="accordion-body position-relative my-3">
+                            <!-- productos en carrito -->
+                                <label for="" class="floating-label">Ingresá tu cupón</label>
+                                <input type="text" class="form-control" name="discount" form="form-cart">
+                            <!-- fin de productos en carrito -->
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="resumen">
+                    <div class="accordion" id="descuentos-accordion">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThird" aria-expanded="true" aria-controls="collapseThird">
+                                <p>Resumen de Facturación</p>
+                            </button>
+                          </h2>
+                          <div id="collapseThird" class="accordion-collapse collapse show" data-bs-parent="#descuentosAccordion">
+                            <div class="accordion-body">
+                            <!-- productos en carrito -->
+                                <div class="row justify-content-between">
+                                    <div class="col-md-8">Subtotal</div>
+                                    <div class="col-md-4 text-end">$3720,27</div>
+                                    <div class="col-md-8">Descuento</div>
+                                    <div class="col-md-4 text-end">-$749.99</div>
+                                    <div class="col-md-8">Texto ejemplo</div>
+                                    <div class="col-md-4 text-end">$259.99</div>
+                                    <div class="col-md-8">Envío</div>
+                                    <div class="col-md-4 text-end">$0.00</div>
+                                    <div class="col-md-8">IVA</div>
+                                    <div class="col-md-4 text-end">$228.72</div>
+                                </div>
+                                <hr>
+                                <div class="row justify-content-between">
+                                    <h4 class="col-md-8">Total</h4>
+                                    <h4 class="col-md-4">$3,439.00</h4>
+                                </div>
+                                <div class="form-group position-relative">
+                                    <label for="" class="floating-label">Comentario</label>
+                                    <textarea name="comment" id="" class="form-control" form="form-cart"></textarea>
+                                </div>
+                                
+                                <button class="btn btn-primary w-100 btn-sm" type="submit" form="form-cart">Pagar $3,439.00</button>
+                                <img src="/assets/img/Norton Icon.png" class="btn-norton" alt="">
+                            <!-- fin de productos en carrito -->
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+        <a href="/client/scan"><img src="/assets/img/scanning.png" class="w-100 my-2" alt=""></a>
+
+        <!-- CLIENTES -->
+
+        <img src="/assets/img/desktop-clients-1.png" class="w-100 my-4" alt="">
+    </main>
+    <script>
+        function clickMercadopago(){
+            document.querySelector('.mercadopago').classList.add('activo')
+            document.querySelector('.tarjetas').classList.remove('activo')
+            document.querySelector('.transferencia').classList.remove('activo')
+        }
+        function clickTarjeta(){
+            document.querySelector('.mercadopago').classList.remove('activo')
+            document.querySelector('.tarjetas').classList.add('activo')
+            document.querySelector('.transferencia').classList.remove('activo')
+        }
+        function clickTransferencia(){
+            document.querySelector('.mercadopago').classList.remove('activo')
+            document.querySelector('.tarjetas').classList.remove('activo')
+            document.querySelector('.transferencia').classList.add('activo')
+        }
+        
+    </script>
+
+</body>
+</html>

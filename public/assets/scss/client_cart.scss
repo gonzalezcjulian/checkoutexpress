@@ -1,0 +1,149 @@
+.client_cart{
+    #cart{
+        .floating-label{
+            position: absolute;
+            top: -12px;
+            left: 1.5rem;
+            background-color: #fff;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        section{
+            padding: 0.85rem 1.5rem;
+            border: 2px  grey solid;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            #direccionFacturacion{
+
+            }
+        }
+        #metodoPago{
+            margin-top: 2rem;
+            .mercadopago{
+                margin-bottom: 1.5rem;
+                border: 2px grey solid;
+                padding: 1rem;
+                position: relative;
+                border-radius: 10px;
+                .paypal{
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    width: 2rem;
+                    height: 2rem;
+                }
+            }
+            .mercadopago.activo{
+                border: 2px rgb(0, 128, 255) solid;
+                > label{
+                    color: rgb(0, 128, 255);
+                }
+            }
+            .tarjetas{
+                border: 2px grey solid;
+                padding: 1rem;
+                position: relative;
+                border-radius: 10px;
+                margin-bottom: 1.5rem;
+
+                .cards{
+                    width: 13rem;
+                    height: 1.65rem;
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                }
+                .row{
+                    display: none;
+                }
+                
+            }
+            .tarjetas.activo{
+                border: 2px rgb(0, 128, 255) solid;
+                .row{
+                    display: flex;
+                }
+                > label{
+                    color: rgb(0, 128, 255);
+                }
+            }
+            .seguridad{
+                margin-top:1rem;
+                .icon{
+                    height: 2rem;
+                    width: 2rem;
+                }
+                
+            }
+            .transferencia{
+                border: 2px grey solid;
+                padding: 1rem;
+                position: relative;
+                border-radius: 10px;
+                .row.bancario{
+                    border: 1px rgb(187, 187, 187) solid;
+                    background-color: #fbfbfb;
+                    box-shadow: 0px 0px 12px rgba(163, 163, 163,0.62);
+                    margin-top: 1.5rem;
+                    margin-bottom: 0.5rem;
+                }
+                .row{
+                    border-radius: 8px;
+                    padding: 15px 10px;
+                    margin-left: 1.5rem;
+                    width: 60%; 
+                    display: none;
+                }
+                
+            }
+            .transferencia.activo{
+                border: 2px rgb(0, 128, 255) solid;
+                > label{
+                    color: rgb(0, 128, 255);
+                }
+                .row{
+                    display: flex;
+                }
+            }
+        }
+        #sidebar-cart{
+            .accordion-button{
+                p{
+                    font-weight: bold;
+                    font-size: 1.15rem;
+
+                }
+                span{
+                    font-weight: normal;
+                    font-size: 0.85rem;
+
+                }
+            }
+            #resumenCompra{
+            
+                #resumenCompra-accordion{
+                    .btn-minus-quantity{
+                        border: 1px rgb(209, 209, 209) solid;
+                    }
+                    .quantity{
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        padding: 0.15rem 0.15rem 0.15rem 0.75rem ;
+    
+                    }
+                    .btn-plus-quantity{
+                        border: 1px rgb(209, 209, 209) solid;
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+    .mas-vendidos{
+        .mensaje{
+            font-size: 4.2rem;
+            margin-top: 5rem;
+        }
+    }
+}
